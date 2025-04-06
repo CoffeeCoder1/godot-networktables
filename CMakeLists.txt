@@ -5,6 +5,8 @@ project(godot-networktables)
 # options
 ###############################################################################
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # build universal binaries on macos
 if(APPLE)
   set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
