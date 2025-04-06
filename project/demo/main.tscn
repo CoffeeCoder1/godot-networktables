@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqm5ffyld7lht"]
 
-[ext_resource type="Texture2D" uid="uid://cofuu6isbi0p7" path="res://icon.svg" id="1_ke4q7"]
+[ext_resource type="Script" uid="uid://cifip1vdsohb" path="res://demo/main.gd" id="1_ke4q7"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -9,6 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ke4q7")
 
-[node name="GDExample" type="GDExample" parent="."]
-texture = ExtResource("1_ke4q7")
+[node name="NetworkTableInstance" type="NetworkTableInstance" parent="."]

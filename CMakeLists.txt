@@ -18,6 +18,7 @@ endif()
 
 # ntcore
 
+set(BUILD_SHARED_LIBS OFF CACHE INTERNAL "Don't build WPILib shared libraries" FORCE)
 set(WITH_CSCORE OFF CACHE INTERNAL "Disable WPILib cscore functionality" FORCE)
 set(WITH_GUI OFF CACHE INTERNAL "Disable WPILib GUI functionality" FORCE)
 set(WITH_SIMULATION_MODULES OFF CACHE INTERNAL "Disable WPILib simulation functionality" FORCE)
@@ -29,6 +30,8 @@ set(WITH_PROTOBUF OFF CACHE INTERNAL "Disable WPILib protobuf functionality" FOR
 add_subdirectory(lib/allwpilib)
 
 # godot-cpp
+
+set(GODOTCPP_DISABLE_EXCEPTIONS OFF CACHE INTERNAL "Enable Godot CPP exceptions" FORCE)
 
 add_subdirectory(lib/godot-cpp)
 
@@ -48,14 +51,16 @@ set(CMAKE_INSTALL_RPATH "$ORIGIN")
 add_library(
 	godot-nt4
 	SHARED
-		src/gdexample.cpp
 		src/register_types.cpp
+		src/networktableinstance.cpp
 )
 
 target_link_libraries(
 	godot-nt4
 	PRIVATE
 		godot-cpp
+		wpiutil
+		ntcore
 )
 
 

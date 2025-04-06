@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "example_library_init"
+entry_symbol = "nt4_init"
 compatibility_minimum = "4.4"
 
 [libraries]
@@ -11,3 +11,4 @@ windows.debug.x86_64 = "res://addons/networktables/bin/godot-nt4.dll"
 windows.release.x86_64 = "res://addons/networktables/bin/godot-nt4.dll"
 macos.debug = "res://addons/networktables/bin/libgodot-nt4.dylib"
 macos.release = "res://addons/networktables/bin/libgodot-nt4.dylib"
+
