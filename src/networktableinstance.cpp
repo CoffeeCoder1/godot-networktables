@@ -4,6 +4,7 @@
 #include "networktables/NetworkTableInstance.h"
 #include "ntcore_c.h"
 #include "ntcore_cpp.h"
+#include "topic/networktabletopic.h"
 #include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
@@ -13,6 +14,7 @@ void NetworkTableInstance::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("start_ds_client", "port"), &NetworkTableInstance::start_ds_client, DEFVAL(0));
 	ClassDB::bind_method(D_METHOD("set_server", "address", "port"), &NetworkTableInstance::set_server, DEFVAL(0));
 	ClassDB::bind_method(D_METHOD("set_server_team", "team", "port"), &NetworkTableInstance::set_server_team, DEFVAL(0));
+	ClassDB::bind_method(D_METHOD("get_topic", "name"), &NetworkTableInstance::get_topic);
 }
 
 NetworkTableInstance::NetworkTableInstance() {
@@ -47,3 +49,9 @@ void NetworkTableInstance::set_server_team(unsigned int team, unsigned int port)
 	instance.SetServerTeam(team, port);
 }
 
+Ref<NetworkTableTopic> NetworkTableInstance::get_topic(String name) {
+	Ref<NetworkTableTopic> topic;
+	topic.instantiate();
+	topic->set_topic(instance.GetTopic(name.utf8().get_data()));
+	return topic;
+}

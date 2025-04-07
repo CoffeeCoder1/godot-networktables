@@ -1,9 +1,9 @@
 #ifndef NETWORKTABLEINSTANCE_H
 #define NETWORKTABLEINSTANCE_H
 
-#include "ntcore_c.h"
-#include <godot_cpp/classes/node.hpp>
+#include "topic/networktabletopic.h"
 #include <networktables/NetworkTableInstance.h>
+#include <godot_cpp/classes/node.hpp>
 
 namespace godot {
 
@@ -30,6 +30,7 @@ public:
 	void start_ds_client(unsigned int port);
 	void set_server(String address, unsigned int port);
 	void set_server_team(unsigned int team, unsigned int port);
+	Ref<NetworkTableTopic> get_topic(String name);
 };
 
 } // namespace godot

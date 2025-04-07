@@ -1,6 +1,10 @@
 #include "register_types.h"
 
+#include "godot_cpp/core/class_db.hpp"
 #include "networktableinstance.h"
+#include "topic/networktablegenericsubscriber.h"
+#include "topic/networktablesubscriber.h"
+#include "topic/networktabletopic.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -14,6 +18,9 @@ void initialize_nt4_module(ModuleInitializationLevel p_level) {
 	}
 
 	GDREGISTER_RUNTIME_CLASS(NetworkTableInstance);
+	GDREGISTER_RUNTIME_CLASS(NetworkTableTopic);
+	GDREGISTER_RUNTIME_CLASS(NetworkTableSubscriber);
+	GDREGISTER_RUNTIME_CLASS(NetworkTableGenericSubscriber);
 }
 
 void uninitialize_nt4_module(ModuleInitializationLevel p_level) {
@@ -23,8 +30,8 @@ void uninitialize_nt4_module(ModuleInitializationLevel p_level) {
 }
 
 extern "C" {
-	// Initialization.
-	GDExtensionBool GDE_EXPORT nt4_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, const GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
+// Initialization.
+GDExtensionBool GDE_EXPORT nt4_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, const GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
 	godot::GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
 
 	init_obj.register_initializer(initialize_nt4_module);
@@ -33,5 +40,4 @@ extern "C" {
 
 	return init_obj.init();
 }
-
 }

@@ -53,6 +53,9 @@ add_library(
 	SHARED
 		src/register_types.cpp
 		src/networktableinstance.cpp
+		src/topic/networktabletopic.cpp
+		src/topic/networktablesubscriber.cpp
+		src/topic/networktablegenericsubscriber.cpp
 )
 
 target_link_libraries(
