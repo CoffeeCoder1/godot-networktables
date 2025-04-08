@@ -55,7 +55,9 @@ add_library(
 		src/networktableinstance.cpp
 		src/topic/networktabletopic.cpp
 		src/topic/networktablesubscriber.cpp
+		src/topic/networktablepublisher.cpp
 		src/topic/networktablegenericsubscriber.cpp
+		src/topic/networktablegenericpublisher.cpp
 )
 
 target_link_libraries(

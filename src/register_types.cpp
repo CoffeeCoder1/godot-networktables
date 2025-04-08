@@ -2,7 +2,9 @@
 
 #include "godot_cpp/core/class_db.hpp"
 #include "networktableinstance.h"
+#include "topic/networktablegenericpublisher.h"
 #include "topic/networktablegenericsubscriber.h"
+#include "topic/networktablepublisher.h"
 #include "topic/networktablesubscriber.h"
 #include "topic/networktabletopic.h"
 
@@ -20,7 +22,9 @@ void initialize_nt4_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_RUNTIME_CLASS(NetworkTableInstance);
 	GDREGISTER_RUNTIME_CLASS(NetworkTableTopic);
 	GDREGISTER_RUNTIME_CLASS(NetworkTableSubscriber);
+	GDREGISTER_RUNTIME_CLASS(NetworkTablePublisher);
 	GDREGISTER_RUNTIME_CLASS(NetworkTableGenericSubscriber);
+	GDREGISTER_RUNTIME_CLASS(NetworkTableGenericPublisher);
 }
 
 void uninitialize_nt4_module(ModuleInitializationLevel p_level) {

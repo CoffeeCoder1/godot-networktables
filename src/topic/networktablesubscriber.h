@@ -2,7 +2,7 @@
 #define NETWORKTABLESUBSCRIBER_H
 
 #include "godot_cpp/classes/ref_counted.hpp"
-#include "networktables/Topic.h"
+#include "networktabletopic.h"
 
 namespace godot {
 
@@ -10,7 +10,7 @@ class NetworkTableSubscriber : public RefCounted {
 	GDCLASS(NetworkTableSubscriber, RefCounted)
 
 private:
-	nt::Topic topic;
+	NetworkTableTopic *topic;
 
 protected:
 	static void _bind_methods();
@@ -21,7 +21,7 @@ public:
 	NetworkTableSubscriber() = default;
 	~NetworkTableSubscriber() = default;
 
-	void set_topic(nt::Topic);
+	void set_topic(NetworkTableTopic *topic);
 
 	/**
 	 * Gets the last time the value was changed.
