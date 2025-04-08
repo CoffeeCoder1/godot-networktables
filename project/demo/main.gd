@@ -14,7 +14,7 @@ func _ready() -> void:
 	subscriber = network_table_instance.get_topic("/CoralMode").generic_subscribe()
 	
 	var test_publisher_topic = network_table_instance.get_topic("/Test Publisher")
-	test_publisher_topic.set_type(3)
+	test_publisher_topic.set_type(NetworkTableTopic.NetworkTableType.STRING)
 	publisher = test_publisher_topic.generic_publish("string")
 
 

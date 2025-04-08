@@ -1,5 +1,6 @@
 #include "networktabletopic.h"
 #include "godot_cpp/classes/ref.hpp"
+#include "godot_cpp/core/class_db.hpp"
 #include "networktablegenericpublisher.h"
 #include "networktablegenericsubscriber.h"
 
@@ -13,6 +14,20 @@ void NetworkTableTopic::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_type"), &NetworkTableTopic::get_type);
 
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "type", PropertyHint::PROPERTY_HINT_ENUM, "type1, type2, type3"), "set_type", "get_type");
+
+	BIND_ENUM_CONSTANT(UNASSIGNED);
+	BIND_ENUM_CONSTANT(BOOLEAN);
+	BIND_ENUM_CONSTANT(DOUBLE);
+	BIND_ENUM_CONSTANT(STRING);
+	BIND_ENUM_CONSTANT(RAW);
+	BIND_ENUM_CONSTANT(BOOLEAN_ARRAY);
+	BIND_ENUM_CONSTANT(DOUBLE_ARRAY);
+	BIND_ENUM_CONSTANT(STRING_ARRAY);
+	BIND_ENUM_CONSTANT(RPC);
+	BIND_ENUM_CONSTANT(INTEGER);
+	BIND_ENUM_CONSTANT(FLOAT);
+	BIND_ENUM_CONSTANT(INTEGER_ARRAY);
+	BIND_ENUM_CONSTANT(FLOAT_ARRAY);
 }
 
 void NetworkTableTopic::set_topic(nt::Topic topic) {
