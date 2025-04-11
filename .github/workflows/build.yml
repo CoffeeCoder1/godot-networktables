@@ -1,0 +1,86 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-latest'
+          - 'ubuntu-24.04-arm'
+          - 'windows-latest'
+          - 'macos-latest'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          submodules: 'recursive'
+      - name: setup ninja
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get install ninja-build
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            choco install ninja
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            brew install ninja
+          fi
+        shell: bash
+      - name: build
+        run: ./ci/ci.bash
+        shell: bash
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v4.3.6
+        with:
+          name: godot-networktables-${{ matrix.os }}
+          path: build/install
+
+  package:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+      - name: download all build artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          path: build/artifacts
+      - name: build
+        run: sh ci/package.bash build/artifacts
+        shell: bash
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v4.3.6
+        with:
+          name: project
+          path: project
+
+  publish-release:
+    needs: [package]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          ref: master
+      - name: download project artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: project
+          path: godot-networktables
+      - name: compress release
+        run: |
+          mkdir dist
+          tar -czvf dist/godot-networktables-universal.tar.gz -C godot-networktables .
+          zip -r dist/godot-networktables-universal.zip godot-networktables
+      - name: create release
+        uses: softprops/action-gh-release@v2.0.8
+        with:
+          files: dist/*
+          fail_on_unmatched_files: true
