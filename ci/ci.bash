@@ -6,7 +6,7 @@ set -o pipefail
 mkdir -p build
 cd build
 
-cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install/lib
+cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install/lib $1
 cmake --build . -j10 --config Release --target install
 
 unameOut="$(uname -s)"
