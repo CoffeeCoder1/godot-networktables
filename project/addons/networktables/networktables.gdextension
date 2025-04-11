@@ -5,10 +5,13 @@ compatibility_minimum = "4.4"
 
 [libraries]
 
-linux.debug.x86_64 = "res://addons/networktables/bin/libgodot-nt4.so"
-linux.release.x86_64 = "res://addons/networktables/bin/libgodot-nt4.so"
-windows.debug.x86_64 = "res://addons/networktables/bin/godot-nt4.dll"
-windows.release.x86_64 = "res://addons/networktables/bin/godot-nt4.dll"
-macos.debug = "res://addons/networktables/bin/libgodot-nt4.dylib"
-macos.release = "res://addons/networktables/bin/libgodot-nt4.dylib"
+linux.debug.x86_64 = "res://addons/networktables/bin/libgodot-nt4.linux.x86_64.so"
+linux.release.x86_64 = "res://addons/networktables/bin/libgodot-nt4.linux.x86_64.so"
+linux.debug.arm64 = "res://addons/networktables/bin/libgodot-nt4.linux.aarch64.so"
+linux.release.arm64 = "res://addons/networktables/bin/libgodot-nt4.linux.aarch64.so"
 
+windows.debug.x86_64 = "res://addons/networktables/bin/godot-nt4.windows.x86_64.dll"
+windows.release.x86_64 = "res://addons/networktables/bin/godot-nt4.windows.x86_64.dll"
+
+macos.debug = "res://addons/networktables/bin/libgodot-nt4.macos.universal.dylib"
+macos.release = "res://addons/networktables/bin/libgodot-nt4.macos.universal.dylib"
